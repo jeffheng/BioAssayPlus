@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioAssayPlus Inc. | Precision Diagnostics for Infectious Diseases</title>
+<meta name="description" content="BioAssayPlus Inc. - 15+ years advancing infectious disease diagnostics. Recombinant proteins, monoclonal antibodies, and immunoassay devices for IVD and research.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#0a3d3d;--primary-light:#146060;--accent:#00d4aa;--bg:#fafbfc;--bg-dark:#0f172a;--text:#1e293b;--text-light:#64748b;--text-muted:#94a3b8;--border:#e2e8f0;--shadow:0 4px 6px -1px rgb(0 0 0 / .1),0 2px 4px -2px rgb(0 0 0 / .1);--shadow-lg:0 10px 15px -3px rgb(0 0 0 / .1),0 4px 6px -4px rgb(0 0 0 / .1);--shadow-xl:0 20px 25px -5px rgb(0 0 0 / .1),0 8px 10px -6px rgb(0 0 0 / .1)}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.92);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid var(--border);transition:all .3s ease}
+.navbar.scrolled{box-shadow:var(--shadow)}
+.nav-container{max-width:1280px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--primary);font-weight:800;font-size:1.25rem;letter-spacing:-.02em}
+.logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:10px;display:flex;align-items:center;justify-content:center;color:white;font-size:1.1rem;font-weight:700}
+.nav-links{display:flex;gap:8px;list-style:none}
+.nav-links a{text-decoration:none;color:var(--text);font-weight:500;font-size:.9rem;padding:8px 16px;border-radius:8px;transition:all .2s ease}
+.nav-links a:hover{color:var(--primary);background:rgba(10,61,61,.06)}
+.nav-links a.active{color:var(--primary);background:rgba(10,61,61,.08)}
+.nav-cta{background:var(--primary);color:white!important;padding:10px 24px!important;border-radius:8px!important;font-weight:600!important;transition:all .2s ease}
+.nav-cta:hover{background:var(--primary-light)!important;transform:translateY(-1px);box-shadow:var(--shadow)}
+.mobile-menu-btn{display:none;background:none;border:none;cursor:pointer;padding:8px;color:var(--text)}
+.mobile-menu-btn svg{width:24px;height:24px}
+
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;background:linear-gradient(135deg,var(--bg-dark) 0%,#1a2e2e 50%,var(--primary) 100%);overflow:hidden;padding-top:72px}
+.hero-bg-pattern{position:absolute;inset:0;opacity:.15;background-image:radial-gradient(circle at 2px 2px,rgba(255,255,255,.15) 1px,transparent 0);background-size:40px 40px}
+.hero-grid-lines{position:absolute;inset:0;opacity:.08;background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);background-size:60px 60px}
+.hero-particles{position:absolute;inset:0;overflow:hidden}
+.particle{position:absolute;width:4px;height:4px;background:var(--accent);border-radius:50%;opacity:.3;animation:float 8s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0) translateX(0);opacity:.3}50%{transform:translateY(-30px) translateX(10px);opacity:.6}}
+.hero-content{max-width:1280px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,170,.15);border:1px solid rgba(0,212,170,.3);color:var(--accent);padding:8px 16px;border-radius:100px;font-size:.85rem;font-weight:600;margin-bottom:24px;backdrop-filter:blur(10px)}
+.hero-badge .dot{width:8px;height:8px;background:var(--accent);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.hero h1{font-size:clamp(2.5rem,5vw,4rem);font-weight:800;color:white;line-height:1.1;letter-spacing:-.03em;margin-bottom:24px}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),#00f5d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.15rem;color:rgba(255,255,255,.7);max-width:520px;margin-bottom:40px;line-height:1.7}
+.hero-buttons{display:flex;gap:16px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;border-radius:12px;font-weight:600;font-size:.95rem;text-decoration:none;transition:all .3s ease;cursor:pointer;border:none;font-family:inherit}
+.btn-primary{background:var(--accent);color:var(--bg-dark);box-shadow:0 4px 20px rgba(0,212,170,.3)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,212,170,.4)}
+.btn-outline{background:transparent;color:white;border:1.5px solid rgba(255,255,255,.3)}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.5)}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.hero-card{background:rgba(255,255,255,.05);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.1);border-radius:24px;padding:40px;width:100%;max-width:480px;position:relative;overflow:hidden}
+.hero-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(0,212,170,.1) 0%,transparent 70%);animation:rotate 20s linear infinite}
+@keyframes rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero-card-content{position:relative;z-index:1}
+.hero-card h3{color:white;font-size:1.1rem;font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.hero-card h3 svg{width:20px;height:20px;color:var(--accent)}
+.hero-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.hero-stat{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:20px;text-align:center}
+.hero-stat .number{font-size:2rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace}
+.hero-stat .label{font-size:.8rem;color:rgba(255,255,255,.5);margin-top:4px;text-transform:uppercase;letter-spacing:.05em}
+
+section{padding:100px 24px;max-width:1280px;margin:0 auto}
+.section-header{text-align:center;max-width:640px;margin:0 auto 64px}
+.section-tag{display:inline-block;background:rgba(10,61,61,.08);color:var(--primary);padding:6px 16px;border-radius:100px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.section-header h2{font-size:clamp(1.8rem,3.5vw,2.5rem);font-weight:800;color:var(--text);letter-spacing:-.02em;margin-bottom:16px}
+.section-header p{color:var(--text-light);font-size:1.05rem}
+
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-image{position:relative}
+.about-image-main{width:100%;border-radius:24px;background:linear-gradient(135deg,var(--primary),var(--primary-light));aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.about-image-main svg{width:120px;height:120px;opacity:.3;color:white}
+.about-image-accent{position:absolute;bottom:-24px;right:-24px;width:160px;height:160px;background:var(--accent);border-radius:24px;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-xl)}
+.about-image-accent .years{text-align:center;color:var(--bg-dark)}
+.about-image-accent .years .num{font-size:3rem;font-weight:800;line-height:1;font-family:'JetBrains Mono',monospace}
+.about-image-accent .years .txt{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;margin-top:4px}
+.about-content h3{font-size:2rem;font-weight:800;color:var(--text);margin-bottom:20px;letter-spacing:-.02em}
+.about-content p{color:var(--text-light);font-size:1.05rem;line-height:1.8;margin-bottom:20px}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.about-feature{display:flex;align-items:flex-start;gap:12px}
+.about-feature-icon{width:40px;height:40px;min-width:40px;background:rgba(0,212,170,.1);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--primary)}
+.about-feature-icon svg{width:20px;height:20px}
+.about-feature h4{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.about-feature p{font-size:.85rem;color:var(--text-muted);margin:0}
+
+.products{background:var(--bg-dark);padding:100px 24px;position:relative;overflow:hidden}
+.products::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(0,212,170,.3),transparent)}
+.products-container{max-width:1280px;margin:0 auto}
+.products .section-header h2,.products .section-header p{color:white}
+.products .section-tag{background:rgba(0,212,170,.15);color:var(--accent)}
+.product-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:48px;flex-wrap:wrap}
+.product-tab{padding:10px 24px;border-radius:100px;border:1px solid rgba(255,255,255,.15);background:transparent;color:rgba(255,255,255,.6);font-weight:500;font-size:.9rem;cursor:pointer;transition:all .2s ease;font-family:inherit}
+.product-tab:hover{border-color:rgba(255,255,255,.3);color:white}
+.product-tab.active{background:var(--accent);color:var(--bg-dark);border-color:var(--accent);font-weight:600}
+.product-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px}
+.product-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:28px;transition:all .3s ease;cursor:pointer}
+.product-card:hover{background:rgba(255,255,255,.06);border-color:rgba(0,212,170,.3);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.product-card-icon{width:48px;height:48px;background:rgba(0,212,170,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;color:var(--accent)}
+.product-card-icon svg{width:24px;height:24px}
+.product-card h4{color:white;font-size:1.1rem;font-weight:600;margin-bottom:8px}
+.product-card p{color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.6;margin-bottom:16px}
+.product-card-tags{display:flex;gap:8px;flex-wrap:wrap}
+.product-card-tag{background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);padding:4px 12px;border-radius:6px;font-size:.75rem;font-weight:500}
+.product-panel{display:none}
+.product-panel.active{display:block;animation:fadeIn .4s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.service-card{background:white;border:1px solid var(--border);border-radius:20px;padding:36px;transition:all .3s ease;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--primary));transform:scaleX(0);transition:transform .3s ease}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-xl);border-color:transparent}
+.service-card:hover::before{transform:scaleX(1)}
+.service-card-icon{width:56px;height:56px;background:linear-gradient(135deg,rgba(0,212,170,.1),rgba(10,61,61,.1));border-radius:14px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--primary)}
+.service-card-icon svg{width:26px;height:26px}
+.service-card h4{font-size:1.15rem;font-weight:700;color:var(--text);margin-bottom:12px}
+.service-card p{color:var(--text-light);font-size:.9rem;line-height:1.7;margin-bottom:20px}
+.service-card ul{list-style:none}
+.service-card li{display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem;padding:6px 0}
+.service-card li svg{width:16px;height:16px;color:var(--accent);min-width:16px}
+
+.order-section{background:linear-gradient(135deg,#f0fdfa 0%,#f8fafc 100%);padding:100px 24px}
+.order-container{max-width:1280px;margin:0 auto}
+.order-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.order-card{background:white;border:1px solid var(--border);border-radius:20px;padding:40px;transition:all .3s ease}
+.order-card:hover{box-shadow:var(--shadow-lg);border-color:var(--accent)}
+.order-card-header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.order-card-icon{width:52px;height:52px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:14px;display:flex;align-items:center;justify-content:center;color:white}
+.order-card-icon svg{width:24px;height:24px}
+.order-card h3{font-size:1.3rem;font-weight:700;color:var(--text)}
+.order-card h3 span{display:block;font-size:.85rem;font-weight:400;color:var(--text-muted);margin-top:2px}
+.order-list{list-style:none}
+.order-list li{display:flex;align-items:flex-start;gap:12px;padding:14px 0;border-bottom:1px solid var(--border)}
+.order-list li:last-child{border-bottom:none}
+.order-list .num{width:28px;height:28px;min-width:28px;background:var(--primary);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;font-family:'JetBrains Mono',monospace}
+.order-list .content h4{font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:4px}
+.order-list .content p{font-size:.85rem;color:var(--text-muted);line-height:1.5}
+.order-note{margin-top:20px;padding:16px;background:rgba(10,61,61,.04);border-radius:12px;border-left:3px solid var(--accent)}
+.order-note p{font-size:.85rem;color:var(--text-light);margin:0}
+
+.catalog-section{padding:100px 24px;max-width:1280px;margin:0 auto}
+.catalog-download{display:flex;align-items:center;gap:32px;background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:24px;padding:48px;color:white;position:relative;overflow:hidden}
+.catalog-download::before{content:'';position:absolute;top:-50%;right:-20%;width:400px;height:400px;background:rgba(0,212,170,.1);border-radius:50%}
+.catalog-download-content{flex:1;position:relative;z-index:1}
+.catalog-download h3{font-size:1.8rem;font-weight:800;margin-bottom:12px}
+.catalog-download p{color:rgba(255,255,255,.7);margin-bottom:24px;max-width:480px}
+.catalog-download .btn{background:var(--accent);color:var(--bg-dark);box-shadow:0 4px 20px rgba(0,212,170,.3)}
+.catalog-download .btn:hover{box-shadow:0 8px 30px rgba(0,212,170,.4)}
+.catalog-download-visual{width:160px;height:200px;background:rgba(255,255,255,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;border:2px dashed rgba(255,255,255,.2);position:relative;z-index:1}
+.catalog-download-visual svg{width:64px;height:64px;color:rgba(255,255,255,.5)}
+
+.contact-section{background:var(--bg-dark);padding:100px 24px;position:relative}
+.contact-container{max-width:1280px;margin:0 auto}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.contact-info h3{font-size:2rem;font-weight:800;color:white;margin-bottom:16px}
+.contact-info>p{color:rgba(255,255,255,.6);margin-bottom:40px;font-size:1.05rem}
+.contact-details{display:flex;flex-direction:column;gap:24px}
+.contact-item{display:flex;align-items:flex-start;gap:16px}
+.contact-item-icon{width:48px;height:48px;background:rgba(0,212,170,.1);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--accent);min-width:48px}
+.contact-item-icon svg{width:22px;height:22px}
+.contact-item h4{color:white;font-size:.9rem;font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.contact-item p,.contact-item a{color:rgba(255,255,255,.6);font-size:.95rem;text-decoration:none;transition:color .2s}
+.contact-item a:hover{color:var(--accent)}
+.contact-map{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;height:100%;min-height:400px}
+.contact-map iframe{width:100%;height:100%;min-height:400px;border:none;filter:grayscale(.3) contrast(1.1)}
+
+footer{background:#070b14;padding:64px 24px 32px;border-top:1px solid rgba(255,255,255,.05)}
+.footer-container{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-brand .logo{color:white;margin-bottom:16px}
+.footer-brand p{color:rgba(255,255,255,.5);font-size:.9rem;line-height:1.7;max-width:320px}
+.footer-social{display:flex;gap:12px;margin-top:20px}
+.footer-social a{width:40px;height:40px;background:rgba(255,255,255,.05);border-radius:10px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);transition:all .2s ease;text-decoration:none}
+.footer-social a:hover{background:var(--accent);color:var(--bg-dark);transform:translateY(-2px)}
+.footer-social a svg{width:18px;height:18px}
+.footer-col h4{color:white;font-size:.9rem;font-weight:600;margin-bottom:20px;text-transform:uppercase;letter-spacing:.08em}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:12px}
+.footer-col a{color:rgba(255,255,255,.5);text-decoration:none;font-size:.9rem;transition:color .2s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.05);padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-bottom p{color:rgba(255,255,255,.3);font-size:.8rem}
+
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;bottom:0;background:rgba(255,255,255,.98);backdrop-filter:blur(20px);z-index:999;padding:24px;flex-direction:column;gap:8px}
+.mobile-menu.active{display:flex}
+.mobile-menu a{padding:16px;text-decoration:none;color:var(--text);font-weight:600;font-size:1.1rem;border-radius:12px;transition:all .2s}
+.mobile-menu a:hover{background:rgba(10,61,61,.06)}
+
+.reveal{opacity:0;transform:translateY(30px);transition:all .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:1024px){.hero-content{grid-template-columns:1fr;gap:48px;text-align:center}.hero p{margin-left:auto;margin-right:auto}.hero-buttons{justify-content:center}.hero-visual{order:-1}.about-grid{grid-template-columns:1fr}.about-image{order:-1;max-width:500px;margin:0 auto}.services-grid{grid-template-columns:repeat(2,1fr)}.order-grid{grid-template-columns:1fr}.contact-grid{grid-template-columns:1fr}.contact-map{min-height:300px}.footer-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){.nav-links{display:none}.mobile-menu-btn{display:block}.hero{min-height:auto;padding:120px 0 80px}.hero h1{font-size:2.2rem}.hero-card{padding:24px}.hero-stats{grid-template-columns:1fr 1fr}section{padding:64px 20px}.services-grid{grid-template-columns:1fr}.about-features{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr}.catalog-download{flex-direction:column;text-align:center;padding:32px}.catalog-download-visual{width:120px;height:150px}.footer-grid{grid-template-columns:1fr;gap:32px}.order-card{padding:28px}}
+@media(max-width:480px){.hero h1{font-size:1.8rem}.hero-buttons{flex-direction:column}.btn{width:100%;justify-content:center}.product-tabs{gap:6px}.product-tab{padding:8px 16px;font-size:.8rem}}
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="#" class="logo"><div class="logo-icon">B+</div>BioAssayPlus</a>
+    <ul class="nav-links">
+      <li><a href="#about" class="active">About</a></li>
+      <li><a href="#products">Products</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#order">Order</a></li>
+      <li><a href="#catalog">Catalog</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+    <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#products" onclick="toggleMenu()">Products</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#order" onclick="toggleMenu()">Order</a>
+  <a href="#catalog" onclick="toggleMenu()">Catalog</a>
+  <a href="#contact" onclick="toggleMenu()">Contact Us</a>
+</div>
+
+<section class="hero" id="home">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge"><span class="dot"></span>Advancing Diagnostics Since 2009</div>
+      <h1>Precision Reagents for <span>Infectious Disease</span> Diagnostics</h1>
+      <p>Recombinant proteins, monoclonal antibodies, and immunoassay devices trusted by diagnostic manufacturers and research institutions worldwide for over 15 years.</p>
+      <div class="hero-buttons">
+        <a href="#products" class="btn btn-primary">Explore Products<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg></a>
+        <a href="#contact" class="btn btn-outline">Get in Touch<svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <div class="hero-card-content">
+          <h3><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Trusted by Industry Leaders</h3>
+          <div class="hero-stats">
+            <div class="hero-stat"><div class="number">15+</div><div class="label">Years</div></div>
+            <div class="hero-stat"><div class="number">200+</div><div class="label">Products</div></div>
+            <div class="hero-stat"><div class="number">50+</div><div class="label">Pathogens</div></div>
+            <div class="hero-stat"><div class="number">30+</div><div class="label">Countries</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid reveal">
+    <div class="about-image">
+      <div class="about-image-main">
+        <svg fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+      </div>
+      <div class="about-image-accent">
+        <div class="years"><div class="num">15</div><div class="txt">Years of<br>Excellence</div></div>
+      </div>
+    </div>
+    <div class="about-content">
+      <span class="section-tag">About Us</span>
+      <h3>Driving Innovation in Infectious Disease Diagnostics</h3>
+      <p>Bioassayplus Inc. has been advancing infectious disease diagnostics and research for 15 years. As a dynamic biotech firm, we specialize in developing and manufacturing reagents, including recombinant proteins, antibodies, and immunoassay devices for the diagnostic and research community.</p>
+      <p>Our commitment to quality and precision enables us to support the diagnostic industry and research communities with cutting-edge products that enhance scientific discovery and improve patient outcomes.</p>
+      <div class="about-features">
+        <div class="about-feature">
+          <div class="about-feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+          <div><h4>Quality Assured</h4><p>ISO-compliant manufacturing with rigorous QC</p></div>
+        </div>
+        <div class="about-feature">
+          <div class="about-feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <div><h4>Custom Development</h4><p>Tailored solutions for your specific needs</p></div>
+        </div>
+        <div class="about-feature">
+          <div class="about-feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
+          <div><h4>Global Reach</h4><p>Serving customers across 30+ countries</p></div>
+        </div>
+        <div class="about-feature">
+          <div class="about-feature-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg></div>
+          <div><h4>Rapid Turnaround</h4><p>Fast production and delivery timelines</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="products" id="products">
+  <div class="products-container">
+    <div class="section-header reveal">
+      <span class="section-tag">Our Portfolio</span>
+      <h2>Comprehensive Reagent Solutions</h2>
+      <p>From viral antigens to paired monoclonal antibodies, our product portfolio covers the full spectrum of infectious disease diagnostics.</p>
+    </div>
+    <div class="product-tabs reveal">
+      <button class="product-tab active" onclick="switchTab('viruses')">Viruses</button>
+      <button class="product-tab" onclick="switchTab('bacteria')">Bacteria</button>
+      <button class="product-tab" onclick="switchTab('parasites')">Parasites & Fungi</button>
+      <button class="product-tab" onclick="switchTab('human')">Human & Animal</button>
+      <button class="product-tab" onclick="switchTab('ivd')">IVD Components</button>
+      <button class="product-tab" onclick="switchTab('rapid')">Rapid Tests</button>
+    </div>
+
+    <div class="product-panel active" id="panel-viruses">
+      <div class="product-grid">
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>SARS-CoV-2 Reagents</h4>
+          <p>Nucleoprotein, Spike RBD, Omicron variant proteins, and paired monoclonal antibodies for COVID-19 diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Covid19-NP</span><span class="product-card-tag">Covid-RBD</span><span class="product-card-tag">Omicron-NP</span><span class="product-card-tag">2Mab-covid-NP</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Hepatitis B Virus</h4>
+          <p>Surface antigen (CHO & E.coli), core VLP, e antigen VLP, and paired monoclonal antibodies for HBV diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">HBsAg-CHO</span><span class="product-card-tag">HBc-VLP</span><span class="product-card-tag">HBe-VLP</span><span class="product-card-tag">2Mab-HBs</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Hepatitis C Virus</h4>
+          <p>2nd and 4th generation mosaic antigens, NS3 proteins, core proteins, and HRP conjugates for HCV detection.</p>
+          <div class="product-card-tags"><span class="product-card-tag">HCV-2nd</span><span class="product-card-tag">HCV-4th</span><span class="product-card-tag">HCV-3a-NS3</span><span class="product-card-tag">HRP-HCV-4th</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>HIV 1/2 Reagents</h4>
+          <p>gp41, gp36, P24, integrase proteins, and paired monoclonal antibodies for HIV diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">HIV1-gp41</span><span class="product-card-tag">HIV2-gp36</span><span class="product-card-tag">HIV1-P24</span><span class="product-card-tag">2Mab-HIV1-24</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Dengue Virus</h4>
+          <p>Envelope proteins (all 4 serotypes), NS1 proteins, epi-10/epi-13 antigens, and paired monoclonal antibodies.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Den-epi-10</span><span class="product-card-tag">Den1-NS1</span><span class="product-card-tag">2Mab-Den-NS1</span><span class="product-card-tag">Den env-4IRP</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Coronaviruses (Other)</h4>
+          <p>229E, NL63, HKU1, OC43 nucleoproteins, and MERS spike RBD for comprehensive coronavirus research.</p>
+          <div class="product-card-tags"><span class="product-card-tag">CoV229E-NP</span><span class="product-card-tag">CoV-NL63-NP</span><span class="product-card-tag">MERS-SP</span><span class="product-card-tag">CoV-OC43-NP</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Ebola & Marburg</h4>
+          <p>Nucleoproteins, VP40, glycoproteins, and monoclonal antibodies for hemorrhagic fever diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">EBO-Z-np</span><span class="product-card-tag">EBO-Z VP40</span><span class="product-card-tag">MBV-VP40</span><span class="product-card-tag">Mab-EBO-NP</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>More Viral Targets</h4>
+          <p>HPV, HSV, RSV, Influenza A/B, Zika, WNV, JEV, Mumps, Norovirus, Astrovirus, Chikungunya, and more.</p>
+          <div class="product-card-tags"><span class="product-card-tag">HPV16-LC</span><span class="product-card-tag">HSV1-gD</span><span class="product-card-tag">RSV-NP</span><span class="product-card-tag">Zika-NS1</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-panel" id="panel-bacteria">
+      <div class="product-grid">
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>H. pylori</h4>
+          <p>Outer membrane protein P26, CagA antigen, and monoclonal antibodies for H. pylori detection.</p>
+          <div class="product-card-tags"><span class="product-card-tag">HP-OMP26</span><span class="product-card-tag">HP-CagA</span><span class="product-card-tag">2Mab-Pylori</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Salmonella typhi</h4>
+          <p>H protein, outer membrane proteins, and paired monoclonal antibodies for typhoid diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Typhi-H</span><span class="product-card-tag">typhi-OMP</span><span class="product-card-tag">2Mab-typhi</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>M. tuberculosis</h4>
+          <p>Moex protein, ESAT6-CFP10 fusion, and monoclonal antibodies for TB diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Moex</span><span class="product-card-tag">ESAT6-CFP10</span><span class="product-card-tag">Mab-CFP10</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Mycoplasma pneumonia</h4>
+          <p>P1, P30, P116 proteins, and monoclonal antibodies for atypical pneumonia diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">MP-P1</span><span class="product-card-tag">MP-P30</span><span class="product-card-tag">MP-P116</span><span class="product-card-tag">Mab-MP</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Chlamydia</h4>
+          <p>C. pneumonia OMP, C. trachomatis MOMP, and monoclonal antibodies for chlamydia detection.</p>
+          <div class="product-card-tags"><span class="product-card-tag">CP-OMP</span><span class="product-card-tag">CT-MOMP</span><span class="product-card-tag">Mab-CT-MOMP</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>More Bacterial Targets</h4>
+          <p>Neisseria gonorrhea, Shiga toxin, Streptolysin O, Scrub typhus, and more bacterial reagents.</p>
+          <div class="product-card-tags"><span class="product-card-tag">2Mab-NGH</span><span class="product-card-tag">SLT-1B</span><span class="product-card-tag">Strep-O</span><span class="product-card-tag">Scrub-OMP</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-panel" id="panel-parasites">
+      <div class="product-grid">
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Toxoplasma gondii</h4>
+          <p>SAG1, SAG2, GRA6, GRA7, GRA8, ROP1 proteins, and HRP conjugates for toxoplasmosis detection.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Toxo-SAG1</span><span class="product-card-tag">Toxo-SAG2</span><span class="product-card-tag">HRP-Toxo SAG2</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Treponema pallidum (Syphilis)</h4>
+          <p>TP15, TP17, TP47, mosaic antigens, and IVD-grade reagents for syphilis diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">TP15</span><span class="product-card-tag">TP17</span><span class="product-card-tag">Mosaic TP</span><span class="product-card-tag">TP-ivd-1</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Malaria (Plasmodium)</h4>
+          <p>MSP1 proteins for P. falciparum and P. vivax, and paired monoclonal antibodies for malaria diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Pf-MSP1</span><span class="product-card-tag">Pv-MSP1</span><span class="product-card-tag">Pf/Pv-ivd</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>More Parasitic Targets</h4>
+          <p>Chagas disease, Leishmania, Leptospira, Filariasis, and Candida albicans reagents.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Chagas-1F8</span><span class="product-card-tag">Leish-k39</span><span class="product-card-tag">Lepto-LipL32</span><span class="product-card-tag">Wh123</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-panel" id="panel-human">
+      <div class="product-grid">
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Tumor Markers</h4>
+          <p>Paired monoclonal antibodies for AFP, CEA, PSA, and hemoglobin for cancer and occult blood diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">2Mab-AFP</span><span class="product-card-tag">2Mab-CEA</span><span class="product-card-tag">2Mab-PSA</span><span class="product-card-tag">2Mab-Hb</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Hormones & Fertility</h4>
+          <p>Paired monoclonal antibodies for HCG, LH, FSH, TSH, and prolactin for fertility and endocrine diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">2Mab-HCG</span><span class="product-card-tag">2Mab-LH</span><span class="product-card-tag">2Mab-FSH</span><span class="product-card-tag">TSH-B</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Cardiac Markers</h4>
+          <p>Cardiac troponin I and fatty acid binding protein expressed in E. coli for cardiac diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">TnI</span><span class="product-card-tag">FABP</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Cytokines & Growth Factors</h4>
+          <p>Human IL-6, IL-8, IL-12, TNFSF14, galectins, and stem cell factors for research applications.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Hu-IL6</span><span class="product-card-tag">Hu-IL8</span><span class="product-card-tag">TNFSF14</span><span class="product-card-tag">Gal-3</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-panel" id="panel-ivd">
+      <div class="product-grid">
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Paired Monoclonal Antibodies</h4>
+          <p>25+ paired MAb sets for HCG, LH, FSH, HBc, HBe, COVID-19, influenza, RSV, and more IVD applications.</p>
+          <div class="product-card-tags"><span class="product-card-tag">2Mab-HCG</span><span class="product-card-tag">2Mab-Covid-NP</span><span class="product-card-tag">2Mab-InfuA</span><span class="product-card-tag">2Mab-RSV</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Secondary Antibodies</h4>
+          <p>Monoclonal antibodies to human IgG, IgM, IgA, plus goat anti-mouse, anti-chicken IgY for assay development.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Hu-IgG-Mab</span><span class="product-card-tag">Hu-IgM-Mab</span><span class="product-card-tag">Fab-Mouse-IgG</span><span class="product-card-tag">Fab-IgY</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>HRP Conjugates</h4>
+          <p>Horseradish peroxidase conjugated proteins for Dengue, HCV, Toxoplasma, and Mycoplasma diagnostics.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Den-HRP</span><span class="product-card-tag">HRP-HCV-4th</span><span class="product-card-tag">HRP-Toxo SAG2</span><span class="product-card-tag">HRP-MP</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>DIY ELISA Kits</h4>
+          <p>Do-it-yourself ELISA supplies with antigen-coated plates, HRP secondary antibodies, substrates, and buffers.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Coated Plates</span><span class="product-card-tag">HRP Substrate</span><span class="product-card-tag">Wash Buffer</span><span class="product-card-tag">Diluent</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-panel" id="panel-rapid">
+      <div class="product-grid">
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>COVID-19 Rapid Tests</h4>
+          <p>IgM/IgG antibody and antigen rapid test cassettes and uncut sheets for SARS-CoV-2 detection.</p>
+          <div class="product-card-tags"><span class="product-card-tag">SARS-CoV2-Ab</span><span class="product-card-tag">SARS-CoV2-Ag</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Infectious Disease Panel</h4>
+          <p>Rapid test cassettes and uncut sheets for Dengue, Ebola, HIV, HCV, Syphilis, and Malaria.</p>
+          <div class="product-card-tags"><span class="product-card-tag">Dengue-Ab</span><span class="product-card-tag">Ebola-Ab</span><span class="product-card-tag">HIV1/2-Ab</span><span class="product-card-tag">Malaria-Ab</span></div>
+        </div>
+        <div class="product-card reveal">
+          <div class="product-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+          <h4>Pregnancy & HBV Tests</h4>
+          <p>HCG pregnancy test and Hepatitis B surface antigen rapid test cassettes and uncut sheets.</p>
+          <div class="product-card-tags"><span class="product-card-tag">HCG</span><span class="product-card-tag">HBsAg</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section id="services">
+  <div class="section-header reveal">
+    <span class="section-tag">What We Offer</span>
+    <h2>Custom Services & Solutions</h2>
+    <p>From monoclonal antibody development to lateral flow device manufacturing, we provide end-to-end custom solutions tailored to your diagnostic needs.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+      <h4>Monoclonal Antibody Development</h4>
+      <p>Full-service MAb production from antigen preparation to ascites purification across 4 phases with customer evaluation at each stage.</p>
+      <ul>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Antigen screening & immunization</li>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Hybridoma fusion & screening</li>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Subcloning & expansion</li>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Protein A/G purification</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+      <h4>Protein Expression & Purification</h4>
+      <p>Custom recombinant protein expression in E. coli with flexible pricing based on gene complexity and required yield.</p>
+      <ul>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Custom vector: $950 for 5mg</li>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Gene subclone: $1,500 for 5mg</li>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Full synthesis: $1,800 for 5mg</li>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Price varies by gene size</li>
+      </ul>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg></div>
+      <h4>Lateral Flow Device Development</h4>
+      <p>Complete lateral flow assay development service, typically completed in 1-1.5 months for antibody or antigen detection formats.</p>
+      <ul>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Antibody sandwich format</li>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Antigen sandwich format</li>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Multi-analyte detection</li>
+        <li><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>Cross-reaction optimization</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="order-section" id="order">
+  <div class="order-container">
+    <div class="section-header reveal">
+      <span class="section-tag">Get Started</span>
+      <h2>How to Order & Payment Terms</h2>
+      <p>Simple ordering process with flexible payment terms. Contact us to discuss your requirements and receive a customized quote.</p>
+    </div>
+    <div class="order-grid">
+      <div class="order-card reveal">
+        <div class="order-card-header">
+          <div class="order-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/></svg></div>
+          <h3>Ordering Process<span>Step-by-step guide</span></h3>
+        </div>
+        <ul class="order-list">
+          <li>
+            <div class="num">1</div>
+            <div class="content">
+              <h4>Before Order</h4>
+              <p>Inquire the price and quantity by phone, mail, email, or website contact form.</p>
+            </div>
+          </li>
+          <li>
+            <div class="num">2</div>
+            <div class="content">
+              <h4>Confirm Order</h4>
+              <p>Please confirm orders clearly to avoid duplication.</p>
+            </div>
+          </li>
+          <li>
+            <div class="num">3</div>
+            <div class="content">
+              <h4>Shipping</h4>
+              <p>Bioassayplus selects the best shipment method. Charges prepaid or added to invoice. Claims for loss/damage reported to carrier within 10 days.</p>
+            </div>
+          </li>
+          <li>
+            <div class="num">4</div>
+            <div class="content">
+              <h4>Returns</h4>
+              <p>Authorization from Bioassayplus required prior to return. No returns accepted without authorization.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="order-card reveal">
+        <div class="order-card-header">
+          <div class="order-card-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"/></svg></div>
+          <h3>Payment Terms<span>Flexible options available</span></h3>
+        </div>
+        <ul class="order-list">
+          <li>
+            <div class="num">1</div>
+            <div class="content">
+              <h4>Net 60 Terms</h4>
+              <p>Invoice issued upon shipment. Payment due 60 days from invoice date unless otherwise negotiated.</p>
+            </div>
+          </li>
+          <li>
+            <div class="num">2</div>
+            <div class="content">
+              <h4>Pre-payment Option</h4>
+              <p>Bioassayplus may require pre-payment at its discretion.</p>
+            </div>
+          </li>
+          <li>
+            <div class="num">3</div>
+            <div class="content">
+              <h4>USD Currency</h4>
+              <p>All payments to be made in US dollars.</p>
+            </div>
+          </li>
+          <li>
+            <div class="num">4</div>
+            <div class="content">
+              <h4>Handling Fee</h4>
+              <p>Minimum shipping and handling charge of $25 per shipment.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="order-note">
+          <p><strong>Intellectual Property:</strong> Bioassayplus retains all rights to products. Customer shall not modify, alter, sequence, translate, reverse engineer, or decompile products. Products are for research or manufacturing use only, not for diagnostic or therapeutic procedures.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="catalog-section" id="catalog">
+  <div class="section-header reveal">
+    <span class="section-tag">Resources</span>
+    <h2>Product Catalog & Documents</h2>
+    <p>Download our comprehensive product catalog and specification sheets for detailed information on all our reagents and devices.</p>
+  </div>
+  <div class="catalog-download reveal">
+    <div class="catalog-download-content">
+      <h3>2024 Product Catalog</h3>
+      <p>Complete listing of all recombinant proteins, monoclonal antibodies, HRP conjugates, rapid tests, and custom services. Includes catalog numbers, specifications, and applications.</p>
+      <a href="https://bioassayplus.com/wp-content/uploads/2024/09/Bioassayplus-product-List-June-09-2024-version-for-ADLM-2024-version-2.pdf" target="_blank" class="btn btn-primary">
+        Download Catalog
+        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+      </a>
+    </div>
+    <div class="catalog-download-visual">
+      <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+    </div>
+  </div>
+</section>
+
+<div class="contact-section" id="contact">
+  <div class="contact-container">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <span class="section-tag">Get in Touch</span>
+        <h3>Contact Us</h3>
+        <p>Ready to discuss your diagnostic reagent needs? Reach out to our team for quotes, technical support, or partnership inquiries.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+            <div>
+              <h4>Address</h4>
+              <p>4510 Rhodes Drive, Windsor, ON, Canada N8W 5K5</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg></div>
+            <div>
+              <h4>Phone</h4>
+              <p><a href="tel:+15199974038">+1 (519) 997-4038</a></p>
+              <p><a href="tel:+15483326188">+1 (548) 332-6188</a> (Mobile)</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg></div>
+            <div>
+              <h4>Email</h4>
+              <p><a href="mailto:marketing@bioassayplus.com">marketing@bioassayplus.com</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-map reveal">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-83.0200%2C42.2900%2C-82.9800%2C42.3200&amp;layer=mapnik&amp;marker=42.3050%2C-83.0000" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo"><div class="logo-icon">B+</div>BioAssayPlus</a>
+        <p>Advancing infectious disease diagnostics and research for 15 years. Recombinant proteins, antibodies, and immunoassay devices for the diagnostic and research community.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+          <a href="#" aria-label="X / Twitter"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#products">Virus Products</a></li>
+          <li><a href="#products">Bacterial Products</a></li>
+          <li><a href="#products">Parasite & Fungus</a></li>
+          <li><a href="#products">Human & Animal</a></li>
+          <li><a href="#products">IVD Components</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">MAb Development</a></li>
+          <li><a href="#services">Protein Expression</a></li>
+          <li><a href="#services">Lateral Flow Devices</a></li>
+          <li><a href="#services">Custom Projects</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#order">How to Order</a></li>
+          <li><a href="#order">Payment Terms</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#catalog">Catalog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>2025 Bioassayplus Inc. All rights reserved.</p>
+      <p>Unauthorized reproduction, distribution, or use of any content is strictly prohibited.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu() {
+  document.getElementById('mobileMenu').classList.toggle('active');
+}
+window.addEventListener('scroll', function() {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 50) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+});
+function switchTab(tabName) {
+  document.querySelectorAll('.product-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.product-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel-' + tabName).classList.add('active');
+}
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+revealElements.forEach(el => revealObserver.observe(el));
+const sections = document.querySelectorAll('section, div[id]');
+const navLinks = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    if (scrollY >= sectionTop - 200) {
+      current = section.getAttribute('id');
+    }
+  });
+  navLinks.forEach(link => {
+    link.classList.remove('active');
+    if (link.getAttribute('href') === '#' + current) {
+      link.classList.add('active');
+    }
+  });
+});
+const particlesContainer = document.getElementById('particles');
+for (let i = 0; i < 20; i++) {
+  const particle = document.createElement('div');
+  particle.className = 'particle';
+  particle.style.left = Math.random() * 100 + '%';
+  particle.style.top = Math.random() * 100 + '%';
+  particle.style.animationDelay = Math.random() * 8 + 's';
+  particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+  particlesContainer.appendChild(particle);
+}
+</script>
+
+</body>
+</html>
+
