@@ -190,7 +190,7 @@ footer{background:#070b14;padding:64px 24px 32px;border-top:1px solid rgba(255,2
 @media(max-width:768px){.nav-links{display:none}.mobile-menu-btn{display:block}.hero{min-height:auto;padding:120px 0 80px}.hero h1{font-size:2.2rem}.hero-card{padding:24px}.hero-stats{grid-template-columns:1fr 1fr}section{padding:64px 20px}.services-grid{grid-template-columns:1fr}.about-features{grid-template-columns:1fr}.product-grid{grid-template-columns:1fr}.catalog-download{flex-direction:column;text-align:center;padding:32px}.catalog-download-visual{width:120px;height:150px}.footer-grid{grid-template-columns:1fr;gap:32px}.order-card{padding:28px}}
 @media(max-width:480px){.hero h1{font-size:1.8rem}.hero-buttons{flex-direction:column}.btn{width:100%;justify-content:center}.product-tabs{gap:6px}.product-tab{padding:8px 16px;font-size:.8rem}}
 
-.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:48px;max-width:900px;margin:0 auto}
+.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;max-width:1200px;margin:0 auto}
 .team-card{background:white;border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all .3s ease;box-shadow:var(--shadow)}
 .team-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-xl)}
 .team-photo{width:100%;aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,var(--bg),#f0fdfa)}
@@ -200,7 +200,7 @@ footer{background:#070b14;padding:64px 24px 32px;border-top:1px solid rgba(255,2
 .team-info h3{font-size:1.4rem;font-weight:800;color:var(--text);margin-bottom:6px;letter-spacing:-.01em}
 .team-role{display:inline-block;background:rgba(0,212,170,.1);color:var(--primary);padding:6px 14px;border-radius:100px;font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
 .team-info p{color:var(--text-light);font-size:.95rem;line-height:1.75;margin:0}
-@media(max-width:768px){.team-grid{grid-template-columns:1fr;gap:32px}.team-info{padding:24px}}
+@media(max-width:1024px){.team-grid{grid-template-columns:repeat(2,1fr);gap:32px}}@media(max-width:768px){.team-grid{grid-template-columns:1fr;gap:32px}.team-info{padding:24px}}
 </style>
 </head>
 <body>
@@ -310,10 +310,7 @@ footer{background:#070b14;padding:64px 24px 32px;border-top:1px solid rgba(255,2
   <div class="team-grid">
     <div class="team-card reveal">
       <div class="team-photo">
-      <!--  <img src="images/jun-xing.png" alt="Jun Xing - CEO" loading="lazy"> -->
-        <picture><source srcset="images/jun-xing.webp" type="image/webp">
-        <img src="images/jun-xing.jpg" alt="Jun Xing - Chief Executive Officer" loading="lazy" width="600" height="600">
-        </picture>
+        <img src="images/jun-xing.png" alt="Jun Xing - CEO" loading="lazy">
       </div>
       <div class="team-info">
         <h3>Jun Xing</h3>
@@ -323,15 +320,22 @@ footer{background:#070b14;padding:64px 24px 32px;border-top:1px solid rgba(255,2
     </div>
     <div class="team-card reveal">
       <div class="team-photo">
-      <!--  <img src="images/sandy-zakaria.png" alt="Sandy Zakaria - Director of Regulatory and Scientific Affairs" loading="lazy"> -->
-        <picture><source srcset="images/sandy_graphite_sketch_600x600.webp" type="image/webp">
-  <img src="images/sandy_graphite_sketch_600x600.jpg" alt="Sandy Zakaria - Director of Regulatory and Scientific Affairs" loading="lazy" width="600" height="600">
-</picture>        
+        <img src="images/sandy-zakaria.png" alt="Sandy Zakaria - Director of Regulatory and Scientific Affairs" loading="lazy">
       </div>
       <div class="team-info">
         <h3>Sandy Zakaria</h3>
         <span class="team-role">Director of Regulatory and Scientific Affairs</span>
-        <p>Sandy Zakaria supports the scientific and regulatory strategy at BioAssayPlus, contributing to scientific documentation, experimental design, and regulatory submissions for in vitro diagnostic (IVD) technologies. She earned her Ph.D. in Biomedical Engineering from McMaster University, where she specialized in molecular diagnostic technologies for infectious pathogen detection. She is committed to advancing high-quality diagnostic products for research and clinical applications.</p>
+        <p>Sandy Zakaria oversees all regulatory compliance, quality assurance, and scientific strategy at BioAssayPlus. With deep expertise in IVD regulatory frameworks and ISO-compliant manufacturing, she ensures every product meets the highest standards for diagnostic and research applications worldwide.</p>
+      </div>
+    </div>
+    <div class="team-card reveal">
+      <div class="team-photo">
+        <img src="images/bing-wang.png" alt="Bing Wang - Director of Quality Assurance" loading="lazy">
+      </div>
+      <div class="team-info">
+        <h3>Bing Wang</h3>
+        <span class="team-role">Director of Quality Assurance</span>
+        <p>Bing Wang leads the quality assurance function at BioAssayPlus, ensuring rigorous quality control across all recombinant protein, monoclonal antibody, and immunoassay device manufacturing processes. His meticulous approach to ISO-compliant systems and batch consistency underpins the reliability trusted by diagnostic manufacturers in over 30 countries.</p>
       </div>
     </div>
   </div>
